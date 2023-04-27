@@ -3,6 +3,7 @@ from django.core.validators import MinLengthValidator
 from django.db import models
 
 from todo_app.accounts.managers import TodoAppUserManager
+from todo_app.common.custom_validators import validate_only_letters
 
 
 class TodoAppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
@@ -45,6 +46,7 @@ class Profile(models.Model):
         max_length=FIRST_NAME_MAX_LENGTH,
         validators=(
             MinLengthValidator(FIRST_NAME_MIN_LENGTH),
+            validate_only_letters,
         )
     )
 
@@ -52,6 +54,7 @@ class Profile(models.Model):
         max_length=LAST_NAME_MAX_LENGTH,
         validators=(
             MinLengthValidator(LAST_NAME_MIN_LENGTH),
+            validate_only_letters,
         )
     )
 
