@@ -8,7 +8,8 @@ def validate_only_letters(value):
 
 
 def validate_title(value):
+    symbols = [' ', "'", ',', '.', '!']
     for ch in value:
-        if ch.isalpha() or ch == '':
+        if ch.isalpha() or ch in symbols:
             continue
-        raise ValidationError('Value should contains only letters!')
+        raise ValidationError('Value should contains only letters and symbols!')
