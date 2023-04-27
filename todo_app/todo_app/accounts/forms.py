@@ -2,11 +2,12 @@ from django.contrib.auth import forms as auth_forms, get_user_model
 from django import forms
 
 from todo_app.accounts.models import Profile
+from todo_app.common.helpers import BootstrapFormMixin
 
 UserModel = get_user_model()
 
 
-class CreateProfileForm(auth_forms.UserCreationForm):
+class CreateProfileForm(BootstrapFormMixin, auth_forms.UserCreationForm):
     first_name = forms.CharField(
         max_length=Profile.FIRST_NAME_MAX_LENGTH,
         widget=forms.TextInput(
@@ -34,6 +35,10 @@ class CreateProfileForm(auth_forms.UserCreationForm):
         )
 
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._init_bootstrap_form_control()
 
     def save(self, commit=True):
         user = super().save(commit=commit)
