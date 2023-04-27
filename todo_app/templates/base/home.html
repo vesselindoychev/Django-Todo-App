@@ -5,6 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Home</h1>
+<nav>
+    <ul>
+        {% if request.user.is_authenticated %}
+            <li><a>Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="#">Sign Up</a></li>
+        {% endif %}
+    </ul>
+</nav>
+<h1>Home</h1>
 </body>
 </html>
