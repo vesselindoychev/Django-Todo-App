@@ -14,6 +14,9 @@ class LoginUserView(auth_views.LoginView):
         return reverse_lazy('home')
 
 
+class LogoutUserView(auth_views.LogoutView):
+    pass
+
 class RegisterUserView(views.CreateView):
     model = Profile
     form_class = CreateProfileForm
