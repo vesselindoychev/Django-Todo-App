@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator
 from django.db import models
 
-from todo_app.common.custom_validators import validate_only_letters
+from todo_app.common.custom_validators import validate_only_letters, validate_title
 
 UserModel = get_user_model()
 
@@ -15,7 +15,7 @@ class Task(models.Model):
         max_length=TITLE_MAX_LENGTH,
         validators=(
             MinLengthValidator(TITLE_MIN_LENGTH),
-            validate_only_letters,
+            validate_title,
         )
     )
 
