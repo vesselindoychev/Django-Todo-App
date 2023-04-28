@@ -11,7 +11,7 @@ class TaskListView(auth_mixins.LoginRequiredMixin, views.ListView):
     template_name = 'base/task_list.html'
 
 
-class TaskCreateView(views.CreateView):
+class TaskCreateView(auth_mixins.LoginRequiredMixin, views.CreateView):
     model = Task
     form_class = CreateTaskForm
     template_name = 'base/task_create.html'
@@ -22,7 +22,7 @@ class TaskCreateView(views.CreateView):
         return super().form_valid(form)
 
 
-class TaskEditView(views.UpdateView):
+class TaskEditView(auth_mixins.LoginRequiredMixin, views.UpdateView):
     model = Task
     form_class = EditTaskForm
     template_name = 'base/task_edit.html'
@@ -31,7 +31,7 @@ class TaskEditView(views.UpdateView):
         return reverse_lazy('task details', kwargs={'pk': self.object.pk})
 
 
-class TaskDeleteView(views.DeleteView):
+class TaskDeleteView(auth_mixins.LoginRequiredMixin, views.DeleteView):
     model = Task
     form_class = DeleteTaskForm
     template_name = 'base/task_delete.html'
@@ -40,6 +40,6 @@ class TaskDeleteView(views.DeleteView):
         return reverse_lazy('task lists')
 
 
-class TaskDetailsView(views.DetailView):
+class TaskDetailsView(auth_mixins.LoginRequiredMixin, views.DetailView):
     model = Task
     template_name = 'base/task_details.html'
