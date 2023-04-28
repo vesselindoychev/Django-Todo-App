@@ -4,4 +4,6 @@
     <h2>Name: {{ object.title }}</h2>
     <p>Complete: {{ object.complete }}</p>
     <a href="{% url 'edit task' object.id %}">Edit Task</a>
+    <br>
+    <a id="delete-link" href="{% url 'delete task' object.id %}">Delete Task</a>
 {% endblock %}

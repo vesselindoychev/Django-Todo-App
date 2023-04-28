@@ -22,3 +22,13 @@ class EditTaskForm(BootstrapFormMixin, forms.ModelForm):
     class Meta:
         model = Task
         exclude = ('user',)
+
+
+class DeleteTaskForm(forms.ModelForm):
+    def save(self, commit=True):
+        self.instance.delete()
+        return self.instance
+
+    class Meta:
+        model = Task
+        fields = ()
