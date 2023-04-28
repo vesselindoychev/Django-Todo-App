@@ -1,4 +1,4 @@
-from django.contrib.auth import mixins as auth_mixins
+from django.contrib.auth import mixins as auth_mixins, get_user_model
 from django.urls import reverse_lazy
 from django.views import generic as views
 
@@ -9,6 +9,12 @@ from todo_app.base.models import Task
 class TaskListView(auth_mixins.LoginRequiredMixin, views.ListView):
     model = Task
     template_name = 'base/task_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_owner'] = self.object_list.filter(user=self.request.user)
+        context['tasks'] = self.object_list.filter(user=self.request.user).count() > 0
+        return context
 
 
 class TaskCreateView(auth_mixins.LoginRequiredMixin, views.CreateView):
