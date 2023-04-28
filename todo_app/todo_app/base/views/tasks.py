@@ -21,3 +21,8 @@ class TaskCreateView(views.CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+
+class TaskDetailsView(views.DetailView):
+    model = Task
+    template_name = 'base/task_details.html'
+

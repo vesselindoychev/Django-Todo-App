@@ -3,7 +3,7 @@
     <h1>My To Do List Dashboard</h1>
     <ul>
         {% for task in object_list %}
-            <li>{{ task }}</li>
+            <li>{{ task }}: <a href="{% url 'task details' task.pk %}">Details</a></li>
 
         {% endfor %}
     </ul>
