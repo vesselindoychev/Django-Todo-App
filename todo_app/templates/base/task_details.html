@@ -2,4 +2,6 @@
 {% block content %}
     <h1>Task Details</h1>
     <h2>Name: {{ object.title }}</h2>
+    <p>Complete: {{ object.complete }}</p>
+    <a href="{% url 'edit task' object.id %}">Edit Task</a>
 {% endblock %}

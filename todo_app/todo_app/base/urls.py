@@ -1,7 +1,7 @@
 from django.urls import path
 
 from todo_app.base.views.generic import HomeView
-from todo_app.base.views.tasks import TaskListView, TaskCreateView, TaskDetailsView
+from todo_app.base.views.tasks import TaskListView, TaskCreateView, TaskDetailsView, TaskEditView
 
 urlpatterns = (
     # Home
@@ -10,5 +10,6 @@ urlpatterns = (
     # Tasks
     path('tasks-lists/', TaskListView.as_view(), name='task lists'),
     path('task-create/', TaskCreateView.as_view(), name='create task'),
+    path('task-edit/<int:pk>/', TaskEditView.as_view(), name='edit task'),
     path('task-details/<int:pk>/', TaskDetailsView.as_view(), name='task details'),
 )

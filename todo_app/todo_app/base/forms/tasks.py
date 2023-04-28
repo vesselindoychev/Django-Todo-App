@@ -11,4 +11,14 @@ class CreateTaskForm(BootstrapFormMixin, forms.ModelForm):
 
     class Meta:
         model = Task
-        exclude = ('user', )
+        exclude = ('user',)
+
+
+class EditTaskForm(BootstrapFormMixin, forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._init_bootstrap_form_control()
+
+    class Meta:
+        model = Task
+        exclude = ('user',)

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Edit Task</h1>
+    <h2>{{ object.title }}</h2>
+    <form method="post" action="{% url 'edit task' object.id %}">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Edit</button>
+    </form>
+{% endblock %}
