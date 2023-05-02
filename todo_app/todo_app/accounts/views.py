@@ -1,5 +1,5 @@
 from django.contrib.auth import views as auth_views, login
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 
@@ -16,6 +16,11 @@ class LoginUserView(auth_views.LoginView):
             return next_page
 
         return reverse_lazy('home')
+
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('home')
+        return super(LoginUserView, self).get(*args, **kwargs)
 
 
 class LogoutUserView(auth_views.LogoutView):
@@ -34,3 +39,9 @@ class RegisterUserView(views.CreateView):
         result = super().form_valid(form)
         login(self.request, self.object)
         return result
+
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('home')
+        return super(RegisterUserView, self).get(*args, **kwargs)
+
