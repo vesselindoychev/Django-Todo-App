@@ -1,4 +1,6 @@
 from django.contrib.auth import mixins as auth_mixins, get_user_model
+from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 
@@ -49,3 +51,8 @@ class TaskDeleteView(auth_mixins.LoginRequiredMixin, views.DeleteView):
 class TaskDetailsView(auth_mixins.LoginRequiredMixin, views.DetailView):
     model = Task
     template_name = 'base/task_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_owner'] = self.object.user_id == self.request.user.id
+        return context
