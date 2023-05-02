@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>My To Do List Dashboard</h1>
+    <a href="{% url 'create task' %}">Add task</a>
+    <form method="get">
+        <input type="text" name="search-area" value="{{ search_input }}">
+        <input type="submit" value="Search">
+    </form>
     <ul>
         {% if tasks %}
             {% if is_owner %}
-                {% for task in object_list %}
+                {% for task in tasks %}
                     <li>{{ task }}: <a href="{% url 'task details' task.pk %}">Details</a></li>
                 {% endfor %}
             {% endif %}

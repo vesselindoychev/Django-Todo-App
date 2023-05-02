@@ -11,11 +11,19 @@ from todo_app.base.models import Task
 class TaskListView(auth_mixins.LoginRequiredMixin, views.ListView):
     model = Task
     template_name = 'base/task_list.html'
+    context_object_name = 'tasks'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['is_owner'] = self.object_list.filter(user=self.request.user)
-        context['tasks'] = self.object_list.filter(user=self.request.user).count() > 0
+        context['tasks'] = self.object_list.filter(user=self.request.user)
+
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['tasks'] = context['tasks'].filter(title__startswith=search_input)
+
+        context['search_input'] = search_input
+
         return context
 
 
