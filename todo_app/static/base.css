@@ -1,0 +1,135 @@
+body {
+    padding-top: 50px;
+    background-color: whitesmoke;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+nav {
+    max-width: 800px;
+    margin: auto;
+    background-color: antiquewhite;
+    -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+    box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+nav ul {
+    padding: 20px 20px 20px 0;
+}
+
+nav ul li a {
+    font-size: 18px;
+}
+
+#last-a-child {
+    color: gray;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', sans-serif;
+}
+
+.container {
+    padding-top: 20px;
+    max-width: 800px;
+    height: 657px;
+    margin: auto;
+    background-color: white;
+    -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+    box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+}
+
+.incomplete-tasks-heading {
+    color: #EB796F;;
+}
+
+.task-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+    border-top: 1px solid rgb(226, 226, 226);
+}
+
+.task-title {
+    display: flex;
+}
+
+.task-title a {
+    text-decoration: none;
+    color: #4b5156;
+    margin-left: 10px;
+    font-size: 19px;
+}
+
+.task-title a:hover{
+    font-size: 24px;
+}
+
+.task-complete-icon {
+    height: 20px;
+    width: 20px;
+    background-color: rgb(105, 192, 105);
+    border-radius: 50%;
+}
+
+.task-incomplete-icon {
+    height: 20px;
+    width: 20px;
+    background-color: rgb(218, 218, 218);
+    border-radius: 50%;
+}
+
+.delete-link {
+    text-decoration: none;
+    font-weight: 900;
+    color: #cf4949;
+    font-size: 22px;
+    line-height: 0;
+}
+
+.delete-link:hover{
+    text-decoration: none;
+    font-size: 35px;
+    color: #cf4949;
+}
+.search-add-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+#add-task-link {
+    color: #EB796F;
+    text-decoration: none;
+    font-size: 27px;
+    /*text-shadow: 1px 1px #81413b;*/
+}
+
+#add-task-link:hover{
+    font-size: 32px;
+}
+.search-bar {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+/*.search-bar input:nth-child(even) {*/
+/*    margin-left: 10px;*/
+/*}*/
+
+.home-heading {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.home-btn {
+    text-align: center;
+    position: absolute;
+    left: 650px;
+    top: 300px;
+}

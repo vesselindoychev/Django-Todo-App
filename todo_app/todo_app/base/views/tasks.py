@@ -17,7 +17,7 @@ class TaskListView(auth_mixins.LoginRequiredMixin, views.ListView):
         context = super().get_context_data(**kwargs)
         context['is_owner'] = self.object_list.filter(user=self.request.user)
         context['tasks'] = self.object_list.filter(user=self.request.user)
-
+        context['incomplete_tasks'] = self.object_list.filter(user=self.request.user, complete=False).count()
         search_input = self.request.GET.get('search-area') or ''
         if search_input:
             context['tasks'] = context['tasks'].filter(title__startswith=search_input)

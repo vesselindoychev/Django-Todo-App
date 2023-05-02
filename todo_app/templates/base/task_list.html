@@ -1,20 +1,40 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>My To Do List Dashboard</h1>
-    <a href="{% url 'create task' %}">Add task</a>
-    <form method="get">
-        <input type="text" name="search-area" value="{{ search_input }}">
-        <input type="submit" value="Search">
-    </form>
-    <ul>
+    <h1 class="task-list-heading">My To Do List Dashboard</h1>
+    <h3 class="incomplete-tasks-heading">You have <i>{{ incomplete_tasks }}</i> incomplete task{{ incomplete_tasks|pluralize:'s' }}</h3>
+
+    <div class="search-add-wrapper">
+        <form class="search-bar" method="get">
+            <input type="text" name="search-area" value="{{ search_input }}" placeholder="Search..">
+            <input type="submit" value="Search">
+        </form>
+        <a id="add-task-link" href="{% url 'create task' %}">&#x2b; Add task</a>
+    </div>
+
+    <div class="task-items-wrapper">
         {% if tasks %}
             {% if is_owner %}
                 {% for task in tasks %}
-                    <li>{{ task }}: <a href="{% url 'task details' task.pk %}">Details</a></li>
+                    <div class="task-wrapper">
+                        {% if task.complete %}
+                            <div class="task-title">
+                                <div class="task-complete-icon"></div>
+                                <i><s><a href="{% url 'edit task' task.pk %}">{{ task }}</a></s></i>
+                            </div>
+                             <a class="delete-link" href="{% url 'delete task' task.pk %}">&#215;</a>
+                        {% else %}
+                            <div class="task-title">
+                                <div class="task-incomplete-icon"></div>
+                                <a href="{% url 'edit task' task.pk %}">{{ task }}</a>
+                            </div>
+                             <a class="delete-link" href="{% url 'delete task' task.pk %}">&#215;</a>
+                        {% endif %}
+                    </div>
+
                 {% endfor %}
             {% endif %}
         {% else %}
             <h4>No tasks</h4>
         {% endif %}
-    </ul>
+    </div>
 {% endblock %}
