@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-    <a href="{% url 'task lists' %}">Go back</a>
-    <h1>Task Details</h1>
-    <h2>Name: {{ object.title }}</h2>
-    <p>Complete: {{ object.complete }}</p>
-    {% if is_owner %}
-        <a href="{% url 'edit task' object.id %}">Edit Task</a>
-        <br>
-        <a id="delete-link" href="{% url 'delete task' object.id %}">Delete Task</a>
-    {% endif %}
+    <div class="header-bar">
+        <a href="{% url 'task lists' %}">&#8592; Go Back</a>
+    </div>
+        <h1>Task Details</h1>
+        <h2>Name: {{ object.title }}</h2>
+    <div class="task-details-wrapper">
+        <p>Complete: {{ object.complete }}</p>
+        {% if is_owner %}
+            <a href="{% url 'edit task' object.id %}">Edit Task <i class="fa-solid fa-pen"></i></a>
+            <br>
+            <a id="delete-link" href="{% url 'delete task' object.id %}">Delete Task <i class="fa-solid fa-trash"></i></a>
+        {% endif %}
+    </div>
 {% endblock %}f

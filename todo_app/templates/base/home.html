@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <h1 class="home-heading">Organize it all with Todos Helper</h1>
-    <a href="{% url 'create task' %}" type="button" class="btn btn-primary home-btn">Get Started</a>
+    <div class="home-img-btn-wrapper">
+        <p class="home-img-wrapper"><img alt="image" src="{% static 'images/todo-list-img.jpeg' %}"></p>
+        <a id="home-link" href="{% url 'create task' %}">Get Started</a>
+    </div>
 {% endblock %}

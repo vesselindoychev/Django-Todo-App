@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-    <a type="submit" href="{% url 'task lists' %}">Go back</a>
-    <h1>Are you sure you want to delete this task?</h1>
+    <div class="header-bar">
+        <a href="{% url 'task lists' %}">&#8592; Go Back</a>
+    </div>
+    <h1>Are you sure you want to delete "{{ object.title }}"?</h1>
 
     <form method="post" action="{% url 'delete task' object.id %}">
         {% csrf_token %}
