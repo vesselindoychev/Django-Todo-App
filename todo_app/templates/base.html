@@ -39,7 +39,7 @@
                 <a class="nav-link" href="{% url 'logout' %}">Logout</a>
             </li>
             <li class="nav-item">
-                <a href="#" id="last-a-child" class="nav-link"><i>Hello, {{ request.user }}</i></a>
+                <a href="{% url 'profile details' request.user.id %}" id="last-a-child" class="nav-link"><i>Hello, {{ request.user }}</i></a>
             </li>
 
         {% else %}

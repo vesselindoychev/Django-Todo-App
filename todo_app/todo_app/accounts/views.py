@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 
-from todo_app.accounts.forms import CreateProfileForm
+from todo_app.accounts.forms import CreateProfileForm, EditProfileForm
 from todo_app.accounts.models import Profile
 
 
@@ -45,3 +45,16 @@ class RegisterUserView(views.CreateView):
             return redirect('home')
         return super(RegisterUserView, self).get(*args, **kwargs)
 
+
+class ProfileDetailsView(views.DetailView):
+    model = Profile
+    template_name = 'accounts/profile-details.html'
+
+
+class EditProfileView(views.UpdateView):
+    model = Profile
+    form_class = EditProfileForm
+    template_name = 'accounts/profile_edit.html'
+
+    def get_success_url(self):
+        return reverse_lazy('profile details', kwargs={'pk': self.object.pk})

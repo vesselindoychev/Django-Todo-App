@@ -240,7 +240,29 @@ button {
     margin-top: 10px;
     padding-left: 15px;
 }
+
 .register-p {
     margin-top: 10px;
     padding-left: 15px;
+}
+
+.profile-details-wrapper {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.profile-details-wrapper a {
+    background-color: antiquewhite;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    padding: 10px 0;
+}
+
+.profile-details-wrapper a:hover {
+    opacity: 0.7;
 }

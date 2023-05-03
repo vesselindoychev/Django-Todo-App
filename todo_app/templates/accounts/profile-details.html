@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="profile-details-wrapper">
+        <img alt="" src="{{ object.picture }}">
+        <h1>{{ object.get_full_name }}</h1>
+        <p>Gender: {{ object.gender }}</p>
+
+        {% if object.date_of_birth %}
+            <p>Date of birth: {{ object.date_of_birth }}</p>
+        {% endif %}
+
+        {% if object.description %}
+            <p>Description: {{ object.description }}</p>
+        {% endif %}
+        <a href="{% url 'edit profile' object.pk %}">Edit Profile</a>
+    </div>
+
+{% endblock %}
