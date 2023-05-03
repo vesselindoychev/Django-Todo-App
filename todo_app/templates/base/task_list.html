@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1 class="task-list-heading">My To Do List Dashboard</h1>
-    <h3 class="incomplete-tasks-heading">You have <i>{{ incomplete_tasks }}</i> incomplete task{{ incomplete_tasks|pluralize:'s' }}</h3>
+    <h3 class="incomplete-tasks-heading">You have <i>{{ incomplete_tasks }}</i> incomplete
+        task{{ incomplete_tasks|pluralize:'s' }}</h3>
 
     <div class="search-add-wrapper">
         <form class="search-bar" method="get">
@@ -14,20 +15,20 @@
     <div class="task-items-wrapper">
         {% if tasks %}
             {% if is_owner %}
-                {% for task in tasks %}
+                {% for task in page_obj %}
                     <div class="task-wrapper">
                         {% if task.complete %}
                             <div class="task-title">
                                 <div class="task-complete-icon"></div>
                                 <i><s><a href="{% url 'edit task' task.pk %}">{{ task }}</a></s></i>
                             </div>
-                             <a class="delete-link" href="{% url 'delete task' task.pk %}">&#215;</a>
+                            <a class="delete-link" href="{% url 'delete task' task.pk %}">&#215;</a>
                         {% else %}
                             <div class="task-title">
                                 <div class="task-incomplete-icon"></div>
                                 <a href="{% url 'edit task' task.pk %}">{{ task }}</a>
                             </div>
-                             <a class="delete-link" href="{% url 'delete task' task.pk %}">&#215;</a>
+                            <a class="delete-link" href="{% url 'delete task' task.pk %}">&#215;</a>
                         {% endif %}
                     </div>
 
@@ -36,5 +37,23 @@
         {% else %}
             <h4>No tasks in list</h4>
         {% endif %}
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
     </div>
 {% endblock %}

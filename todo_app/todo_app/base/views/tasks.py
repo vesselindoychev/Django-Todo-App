@@ -1,4 +1,5 @@
 from django.contrib.auth import mixins as auth_mixins, get_user_model
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -12,12 +13,17 @@ class TaskListView(auth_mixins.LoginRequiredMixin, views.ListView):
     model = Task
     template_name = 'base/task_list.html'
     context_object_name = 'tasks'
+    # paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['is_owner'] = self.object_list.filter(user=self.request.user)
         context['tasks'] = self.object_list.filter(user=self.request.user)
         context['incomplete_tasks'] = self.object_list.filter(user=self.request.user, complete=False).count()
+        paginator = Paginator(context['tasks'], 5)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context['page_obj'] = page_obj
         search_input = self.request.GET.get('search-area') or ''
         if search_input:
             context['tasks'] = context['tasks'].filter(title__startswith=search_input)
