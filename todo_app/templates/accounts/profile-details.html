@@ -13,6 +13,7 @@
             <p>Description: {{ object.description }}</p>
         {% endif %}
         <a href="{% url 'edit profile' object.pk %}">Edit Profile</a>
+        <a id="change-pass" href="{% url 'change password' object.pk %}">Change password</a>
     </div>
 
 {% endblock %}

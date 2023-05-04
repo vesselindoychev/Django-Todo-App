@@ -58,3 +58,10 @@ class EditProfileView(views.UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('profile details', kwargs={'pk': self.object.pk})
+
+
+class ChangePasswordView(auth_views.PasswordChangeView):
+    template_name = 'accounts/change_password.html'
+
+    def get_success_url(self):
+        return reverse_lazy('password redirect')

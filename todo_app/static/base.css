@@ -266,3 +266,7 @@ button {
 .profile-details-wrapper a:hover {
     opacity: 0.7;
 }
+
+#change-pass {
+    border-top: 1px solid burlywood;
+}
